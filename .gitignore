@@ -31,3 +31,5 @@ npm-debug.log
 
 .idea/
 .env
+/public/javascripts/
+/public/stylesheets/
