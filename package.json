@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "build": "webpack --config ./webpack/webpack.config.js --progress --profile --colors",
-    "start" : "node ./server/server"
+    "start" : "node ./server"
   },
   "dependencies": {
     "body-parser": "~1.13.2",
