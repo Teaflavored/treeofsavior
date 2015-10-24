@@ -9,6 +9,8 @@ import session from "express-session";
 import passport from "passport";
 import React from "react";
 import ReactDOM from "react-dom/server";
+import Fetchr from "fetchr";
+import registerServices from "./server/helpers/registerServices.js";
 import db from "./server/_db";
 import sessionConfig from "./config/session.js";
 import passportConfig from "./config/passport.js";
@@ -25,16 +27,30 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(session(sessionConfig(session)));
+
+//passport
 passportConfig(app, passport);
 app.use(passport.initialize());
 app.use(passport.session());
+
+//services
+registerServices(Fetchr);
+app.use("/api", Fetchr.middleware());
+
 app.use( (req, res) => {
+
+    let fetchr = new Fetchr({
+        xhrPath : "/api",
+        req: req
+    });
+
     res.send("<!DOCTYPE html>\n" + ReactDOM.renderToString(<Html />));
 });
+
 app.set('port', port);
 const server = http.createServer(app);
 
 server.listen(port);
-server.on("listening", function () {
+server.on("listening", () => {
     console.log("server is running on port " + port);
 });
