@@ -10,12 +10,12 @@ import session from "express-session";
 import sessionConfig from "./config/session.js";
 import passportConfig from "./config/passport.js";
 import passport from "passport";
+import React from "react";
+import ReactDOM from "react-dom/server";
+import Html from "./app/components/html.jsx";
 
 db();
 var app = express();
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'hbs');
 
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(compression());
@@ -30,8 +30,8 @@ passportConfig(app, passport);
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.get('/', function(req, res, next) {
-    res.render('index', { title: 'Express' });
+app.use( (req, res) => {
+    res.send("<!DOCTYPE html>\n" + ReactDOM.renderToString(React.createElement(Html)));
 });
 
 var port = process.env.PORT || '3000';
