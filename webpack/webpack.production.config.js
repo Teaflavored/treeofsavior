@@ -6,7 +6,7 @@ module.exports = {
     context: path.resolve(__dirname, ".."),
     entry: {
         main: [
-            "bootstrap-sass!./app/styles/bootstrap.config.js",
+            "bootstrap-sass!./config/bootstrap.config.js",
             "./app/app.js"
         ]
     },

@@ -1,7 +1,7 @@
 import User from "../models/user.js";
 import localConfig from "./passport.local.config.js";
 
-module.exports = function (app, passport, config) {
+export default function (app, passport, config) {
     passport.serializeUser(function(user, done) {
         done(null, user.id);
     });

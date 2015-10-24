@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-module.exports = function () {
+export default function () {
     var dbUrl = process.env.DB_URL,
         dbRetries = process.env.DB_RETRIES || 10;
 

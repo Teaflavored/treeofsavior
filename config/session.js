@@ -1,6 +1,6 @@
 import connectMongo from "connect-mongo";
 
-module.exports = function (session) {
+export default function (session) {
     var MongoStore = connectMongo(session);
 
     return {

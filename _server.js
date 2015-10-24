@@ -15,7 +15,8 @@ import ReactDOM from "react-dom/server";
 import Html from "./app/components/html.jsx";
 
 db();
-var app = express();
+const app = express();
+const port = process.env.PORT || '3000';
 
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(compression());
@@ -24,19 +25,14 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(session(sessionConfig(session)));
-
-//passport
 passportConfig(app, passport);
 app.use(passport.initialize());
 app.use(passport.session());
-
 app.use( (req, res) => {
-    res.send("<!DOCTYPE html>\n" + ReactDOM.renderToString(React.createElement(Html)));
+    res.send("<!DOCTYPE html>\n" + ReactDOM.renderToString(<Html />));
 });
-
-var port = process.env.PORT || '3000';
 app.set('port', port);
-var server = http.createServer(app);
+const server = http.createServer(app);
 
 server.listen(port);
 server.on("listening", function () {

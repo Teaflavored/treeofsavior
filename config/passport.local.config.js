@@ -1,10 +1,8 @@
 import mongoose from "mongoose";
-import passportLocal from "passport-local";
+import { Strategy as LocalStrategy } from "passport-local";
 import User from "../models/user.js";
 
-var LocalStrategy = passportLocal.Strategy;
-
-module.exports = new LocalStrategy(
+export default new LocalStrategy(
     {
         usernameField: "email"
     },
