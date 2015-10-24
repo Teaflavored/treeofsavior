@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "build": "webpack --config ./webpack/webpack.config.js --progress --profile --colors --display-error-details",
-    "postinstall": "webpack --config ./webpack/webpack.config.js --display-error-details",
+    "postinstall": "webpack --config ./webpack/webpack.production.config.js --display-error-details",
     "start": "node ./server"
   },
   "dependencies": {
