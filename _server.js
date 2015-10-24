@@ -5,13 +5,13 @@ import cookieParser from "cookie-parser";
 import bodyParser from "body-parser";
 import compression from "compression";
 import http from "http";
-import db from "./_db";
 import session from "express-session";
-import sessionConfig from "./config/session.js";
-import passportConfig from "./config/passport.js";
 import passport from "passport";
 import React from "react";
 import ReactDOM from "react-dom/server";
+import db from "./server/_db";
+import sessionConfig from "./config/session.js";
+import passportConfig from "./config/passport.js";
 import Html from "./app/components/html.jsx";
 
 db();

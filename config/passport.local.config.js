@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import { Strategy as LocalStrategy } from "passport-local";
-import User from "../models/user.js";
+import User from "../server/models/user.js";
 
 export default new LocalStrategy(
     {

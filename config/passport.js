@@ -1,4 +1,4 @@
-import User from "../models/user.js";
+import User from "../server/models/user.js";
 import localConfig from "./passport.local.config.js";
 
 export default function (app, passport, config) {
