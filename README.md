@@ -3,7 +3,9 @@
 ##Quick Setup guide
 
 - install the latest version of node at the [Node JS website](http://nodejs.org/en/)
+- install the latest version of mongodb at [Mongodb website](https://www.mongodb.org/)
 - clone the repo to your local box ``git clone https://github.com/Teaflavored/treeofsavior``
 - navigate to the repo ``cd treeofsavior`` and run ``npm install``
 - to build the webpack client bundle run ``npm run build``
+- in a separate terminal, start up the mongo server by running ``mongod``, *Note: You may need permission to run this
 - run ``npm start`` and navigate to ``localhost:3000`` in your favorite browser
