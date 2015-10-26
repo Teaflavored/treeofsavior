@@ -64,9 +64,10 @@ import { createUser } from "./app/actions/userActions.js";
 });*/
 
 
-app.get('/*', function(req, res) {
+/*app.use('/*', function(req, res) {
     res.sendFile(__dirname + '/app/index.html');
-});
+});*/
+app.use(express.static(path.join(__dirname, 'app')));
 
 app.set('port', port);
 const server = http.createServer(app);
@@ -82,7 +83,7 @@ var WebpackDevServer = require('webpack-dev-server');
 var config = require('./webpack/webpack.config');
 
 new WebpackDevServer(webpack(config), {
-	   contentBase: __dirname,
+	  contentBase: __dirname,
 	  publicPath: config.output.publicPath,
   	hot: true,
   	historyApiFallback: true,
@@ -94,6 +95,6 @@ new WebpackDevServer(webpack(config), {
   if (err) {
      console.log(err);
   }
-  console.log('Listening at localhost:3001');
+  console.log('WebpackDevServer is listening at localhost:3001');
 });
 

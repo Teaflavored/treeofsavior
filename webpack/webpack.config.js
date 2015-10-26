@@ -16,7 +16,7 @@ module.exports = {
     ],
     output: {
         path: path.join(__dirname, '..' ,'public', 'javascripts'),
-        filename: "bundle.js",
+        filename: "main.js",
         //chunkFilename: "[name].js",
         publicPath: '/public/javascripts/'
     },

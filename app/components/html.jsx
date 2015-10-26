@@ -8,22 +8,12 @@ export default class Html extends Component {
 
     render() {
         return (
-            <html lang="en-us">
-                <head>
-                    <title>Tree of Savior</title>
-                </head>
-                <body>
-                    <script dangerouslySetInnerHTML={{__html: `window.__data=${serialize(this.props.store.getState())};`}} charSet="UTF-8"/>
-                    <script src="/javascripts/main.js"></script>
-                </body>
-            </html>
+                	<p>hello, world!!!!</p>
         );
     };
 };
 
 Html.propTypes = {
     store: PropTypes.object
-                  
-                );
-    }
+                 
 };
