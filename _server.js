@@ -14,7 +14,7 @@ import sessionConfig from "./config/session.js";
 import passportConfig from "./config/passport.js";
 import Html from "./app/components/html.jsx";
 import registerApiEndpoints from "./api"
-import store from "./app/store.js";
+import { configureStore } from "./app/store.js";
 
 db();
 const app = express();
@@ -44,16 +44,17 @@ import { createUser } from "./app/actions/userActions.js";
 app.use( (req, res) => {
 
     //used for testing
-    let promise = store.dispatch(createUser({
+    const store = configureStore();
+
+    const promise = store.dispatch(createUser({
         email: "random" + Math.random() + "@gmail.com",
         password: "testThis"
     }));
 
     promise.then( () => {
         console.log(store.getState());
+        res.send("<!DOCTYPE html>\n" + ReactDOM.renderToString(<Html store={store}/>));
     });
-
-    res.send("<!DOCTYPE html>\n" + ReactDOM.renderToString(<Html />));
 });
 
 app.set('port', port);
