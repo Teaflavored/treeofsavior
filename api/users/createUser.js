@@ -8,9 +8,9 @@ export default (req, res) => {
 
     let user = new User(req.body);
 
-    user.save().deselect(["password"]).then(
+    user.save().then(
         (user) => {
-            res.send(_omit(user.toObject(), "password"));
+            res.send(_.omit(user.toObject(), "password"));
         },
         (err) => {
             res.send({

@@ -1,14 +1,22 @@
-import { CREATE_USER } from "../actions/actionTypes.js";
+import { CREATE_USER_REQUEST, CREATE_USER_SUCCESS } from "../actions/actionTypes.js";
 
 const initialState = {
-    users: []
+    users: [],
+    isFetching: false
 };
 
-function users(state = initialState, action = {}) {
+export default (state = initialState, action = {}) => {
     switch (action.type) {
-        case CREATE_USER:
-            return Object.assign({}, state, { sessionUser: action.sessionUser });
+        case CREATE_USER_REQUEST:
+            return Object.assign({}, state, {
+                isFetching: true
+            });
+        case CREATE_USER_SUCCESS:
+            return Object.assign({}, state, {
+                isFetching: false,
+                users: state.users.concat([action.user])
+            });
         default:
             return state;
     }
-};
+}

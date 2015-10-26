@@ -1,11 +1,11 @@
-import { USERS, USERS_ID } from "../endpoints.js"
+import { USERS_ENDPOINT, USERS_ID_ENDPOINT } from "../endpoints.js"
 
 import findUser from "./findUser.js";
 import getUsers from "./getUsers.js";
 import createUser from "./createUser.js";
 
 export default (router) => {
-    router.get(USERS_ID, findUser);
-    router.get(USERS, getUsers);
-    router.post(USERS, createUser);
+    router.get(USERS_ID_ENDPOINT, findUser);
+    router.get(USERS_ENDPOINT, getUsers);
+    router.post(USERS_ENDPOINT, createUser);
 }
