@@ -9,12 +9,11 @@ import session from "express-session";
 import passport from "passport";
 import React from "react";
 import ReactDOM from "react-dom/server";
-import Fetchr from "fetchr";
-import registerServices from "./server/helpers/registerServices.js";
 import db from "./server/_db";
 import sessionConfig from "./config/session.js";
 import passportConfig from "./config/passport.js";
 import Html from "./app/components/html.jsx";
+import registerApiEndpoints from "./api"
 
 db();
 const app = express();
@@ -34,15 +33,11 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 //services
-registerServices(Fetchr);
-app.use("/api", Fetchr.middleware());
+const apiRouter = express.Router();
+registerApiEndpoints(apiRouter);
+app.use("/api", apiRouter) ;
 
 app.use( (req, res) => {
-
-    let fetchr = new Fetchr({
-        xhrPath : "/api",
-        req: req
-    });
 
     res.send("<!DOCTYPE html>\n" + ReactDOM.renderToString(<Html />));
 });

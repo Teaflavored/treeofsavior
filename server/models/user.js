@@ -1,13 +1,23 @@
 import mongoose from "mongoose";
 import bcrypt from "bcrypt-nodejs";
+import shortid from "shortid";
 
 var UserSchema = new mongoose.Schema({
+    _id: {
+        type: String,
+        unique: true,
+        'default': shortid.generate
+    },
     email: {
         type: String,
         unique: true,
-        lowercase: true
+        lowercase: true,
+        required: true
     },
-    password: String
+    password: {
+        type: String,
+        required: true
+    }
 });
 
 UserSchema.pre('save', function(next) {
