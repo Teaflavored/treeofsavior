@@ -1,3 +1,5 @@
-document.write("Test from client");
-document.write("its working");
-console.log('hi from client');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import Html from './components/html.jsx';
+
+ReactDOM.render(<Html />, document.getElementById('root'));
