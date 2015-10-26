@@ -1,21 +1,32 @@
 var path = require("path");
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
+var webpack = require('webpack');
 
 module.exports = {
     context: path.resolve(__dirname, ".."),
-    entry: {
-        main: [
+    devtool: 'eval',
+    entry:  [
             "bootstrap-sass!./config/bootstrap.config.js",
+            'webpack-dev-server/client?http://localhost:3001',
+            'webpack/hot/only-dev-server',
             "./app/app.js"
-        ]
-    },
+    ],
+    plugins: [
+        new webpack.HotModuleReplacementPlugin()
+    ],
     output: {
-        path: "./public/javascripts/",
-        filename: "[name].js",
-        chunkFilename: "[name].js"
+        path: path.join(__dirname, '..' ,'public', 'javascripts'),
+        filename: "bundle.js",
+        //chunkFilename: "[name].js",
+        publicPath: '/public/javascripts/'
     },
     module: {
         loaders: [
+            {
+                test: /\.jsx$/,
+                loaders: ['react-hot', 'babel-loader'],
+                exclude: /node_modules/
+            },
             {
                 test: /\.js?$/,
                 exclude: /node_modules/,
@@ -44,6 +55,10 @@ module.exports = {
             {
                 test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
                 loader: "url?limit=10000&mimetype=image/svg+xml"
+            },
+            {
+                test: /\.html$/,
+                loader: "file?name=[name].[ext]",
             }
         ]
     },
@@ -52,6 +67,6 @@ module.exports = {
             "node_modules",
             "app"
         ],
-        extensions: ["", ".json", ".js"]
+        extensions: ["", ".json", ".js", "jsx"]
     }
 };

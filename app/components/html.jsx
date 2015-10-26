@@ -23,4 +23,7 @@ export default class Html extends Component {
 
 Html.propTypes = {
     store: PropTypes.object
+                  
+                );
+    }
 };
