@@ -7,5 +7,10 @@
 - clone the repo to your local box ``git clone https://github.com/Teaflavored/treeofsavior``
 - navigate to the repo ``cd treeofsavior`` and run ``npm install``
 - to build the webpack client bundle run ``npm run build``
+- create a ``.env`` file in the treeofsavior directory and copy paste the following environment variables
+    ``DB_URL = mongodb://localhost/treeofsavior
+      DB_RETRIES = 5
+      SESSION_SECRET = WeloveTreeofSavior
+      BASE_URL=http://localhost:3000``
 - in a separate terminal, start up the mongo server by running ``mongod``, *Note: You may need permission to run this
 - run ``npm start`` and navigate to ``localhost:3000`` in your favorite browser
