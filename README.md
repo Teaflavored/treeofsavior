@@ -1,5 +1,7 @@
 # Tree Of Savior
 
+Visit the current build on [Heroku](https://treeofsavior.herokuapp.com/). This project aims to use [Universal Javascript](https://github.com/facebook/react/pull/4041)
+
 ##Quick Setup guide
 
 - install the latest version of node at the [Node JS website](http://nodejs.org/en/)
