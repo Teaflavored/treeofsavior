@@ -4,6 +4,8 @@
   "private": true,
   "scripts": {
     "build": "webpack --config ./webpack/webpack.config.js --progress --profile --colors --display-error-details",
+    "dev" : "npm run build && npm start",
+    "dev-watch" : "node ./webpack/webpack.server.js",
     "postinstall": "webpack --config ./webpack/webpack.production.config.js --display-error-details",
     "start": "node ./server"
   },

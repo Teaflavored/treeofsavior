@@ -1,11 +1,8 @@
-/*document.write("Test from client");
-document.write("its working");
-document.write(JSON.stringify(window.__data));
-console.log('hi from client');*/
-
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Html from './components/html.jsx';
+import TestComponent from "./components/test.jsx";
 
-ReactDOM.render(<Html />, document.getElementById('root'));
+document.addEventListener("DOMContentLoaded", () => {
+    ReactDOM.render(<TestComponent />, document.getElementById('root'));
+});
 

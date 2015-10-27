@@ -18,4 +18,4 @@ const createStoreWithMiddleware = applyMiddleware(
  */
 export function configureStore (initialState) {
     return createStoreWithMiddleware(reducer, initialState);
-};
+}
