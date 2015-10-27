@@ -13,7 +13,7 @@ import ReactDOM from "react-dom/server";
 import db from "./server/_db";
 import sessionConfig from "./config/session.js";
 import passportConfig from "./config/passport.js";
-import Html from "./app/components/html.jsx";
+import Html from "./app/components/html.js";
 import registerApiEndpoints from "./api"
 import { configureStore } from "./app/store.js";
 
@@ -42,7 +42,7 @@ registerApiEndpoints(apiRouter);
 app.use("/api", apiRouter);
 
 import { createUser } from "./app/actions/userActions.js";
-import TestComponent from "./app/components/test.jsx";
+import TestComponent from "./app/components/test.js";
 
 app.use( (req, res) => {
     //used for testing
