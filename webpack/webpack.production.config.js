@@ -53,7 +53,7 @@ module.exports = {
             "node_modules",
             "app"
         ],
-        extensions: ["", ".json", ".js"]
+        extensions: ["", ".json", ".js", ".jsx"]
     },
     plugins: [
         new webpack.DefinePlugin({
