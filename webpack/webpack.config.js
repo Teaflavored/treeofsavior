@@ -7,12 +7,7 @@ module.exports = {
     devtool: 'eval',
     entry:  [
             "bootstrap-sass!./config/bootstrap.config.js",
-            'webpack-dev-server/client?http://localhost:3001',
-            'webpack/hot/only-dev-server',
             "./app/app.js"
-    ],
-    plugins: [
-        new webpack.HotModuleReplacementPlugin()
     ],
     output: {
         path: path.join(__dirname, '..' ,'public', 'javascripts'),
