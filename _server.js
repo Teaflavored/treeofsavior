@@ -14,15 +14,19 @@ import db from "./server/_db";
 import sessionConfig from "./config/session.js";
 import passportConfig from "./config/passport.js";
 import Html from "./app/components/html.js";
-import registerApiEndpoints from "./api"
+import registerApiEndpoints from "./api";
+import getRoutes from "./app/routes.js";
+import createHistory from 'history/lib/createMemoryHistory';
+import { ReduxRouter } from "redux-router";
+import { reduxReactRouter, match } from "redux-router/server";
 import { configureStore } from "./app/store.js";
+import { Provider } from 'react-redux';
 
 db();
 const app = express();
 const port = process.env.PORT || '3000';
 
 
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(compression());
 app.use(logger("dev"));
 app.use(bodyParser.json());
@@ -41,24 +45,23 @@ const apiRouter = express.Router();
 registerApiEndpoints(apiRouter);
 app.use("/api", apiRouter);
 
-import { createUser } from "./app/actions/userActions.js";
-import TestComponent from "./app/components/test.js";
-
 app.use( (req, res) => {
     //used for testing
-    const store = configureStore();
-    const promise = store.dispatch(createUser({
-        email: "random" + Math.random() + "@gmail.com",
-        password: "testThis"
-    }));
+    const store = configureStore(reduxReactRouter, getRoutes, createHistory);
 
-    promise.then( () => {
-        console.log(store.getState());
-        const component = (<TestComponent />);
-        const html = ReactDOM.renderToString(<Html store={store} component={component} />);
+    store.dispatch(
+        match(req.originalUrl, (error, redirectLocation, routerState) => {
+            const component = (
 
-        res.send("<!DOCTYPE html>\n" + html);
-    });
+                <Provider store={store} key="provider">
+                    <ReduxRouter/>
+                </Provider>
+            );
+
+            const html = ReactDOM.renderToString(<Html store={store} component={component} />);
+            res.send("<!DOCTYPE html>\n" + html);
+        })
+    );
 });
 
 app.set('port', port);
