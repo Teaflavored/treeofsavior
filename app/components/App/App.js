@@ -16,13 +16,18 @@ class App extends Component {
     }
 }
 
-connect(
-    { pushState }
-)(App);
-
 App.propTypes = {
     children: PropTypes.object.isRequired,
     pushState: PropTypes.func.isRequired
 };
+
+function mapStateToProps(state) {
+    return {};
+};
+
+App = connect(
+    mapStateToProps,
+    { pushState: pushState }
+)(App);
 
 export default App;

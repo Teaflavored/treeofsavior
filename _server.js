@@ -26,7 +26,7 @@ db();
 const app = express();
 const port = process.env.PORT || '3000';
 
-
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(compression());
 app.use(logger("dev"));
 app.use(bodyParser.json());
