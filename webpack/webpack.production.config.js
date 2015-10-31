@@ -13,7 +13,7 @@ module.exports = {
     devtool: "source-map",
     entry: {
         main: [
-            "bootstrap-sass!./config/bootstrap.config.js",
+            "bootstrap-sass!./config/bootstrap.production.config.js",
             "./app/app.js"
         ]
     },
@@ -73,6 +73,7 @@ module.exports = {
                 NODE_ENV: JSON.stringify('production')
             }
         }),
+        new webpack.IgnorePlugin(/\.\/dev/, /\/config$/),
         new webpack.optimize.DedupePlugin(),
         new webpack.optimize.OccurenceOrderPlugin(),
         new webpack.optimize.UglifyJsPlugin({

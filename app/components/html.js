@@ -10,7 +10,6 @@ export default class Html extends Component {
     render() {
         const component = this.props.component;
         const assets = this.props.assets;
-
         const content = component ? ReactDOM.renderToString(component) : '';
         return (
             <html lang="en-us">
