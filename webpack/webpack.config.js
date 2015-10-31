@@ -12,9 +12,11 @@ module.exports = {
     output: {
         path: path.join(__dirname, '..' ,'public', 'javascripts'),
         filename: "main.js",
-        //chunkFilename: "[name].js",
-        publicPath: '/public/javascripts/'
+        publicPath: "/public/javascripts"
     },
+    plugins: [
+        new ExtractTextPlugin("styles.css", { allChunks: true })
+    ],
     module: {
         loaders: [
             {
@@ -29,7 +31,7 @@ module.exports = {
             },
             {
                 test: /\.scss$/,
-                loader: ExtractTextPlugin.extract("style", "css?modules&importLoaders=2&sourceMap&localIdentName=[local]___[hash:base64:5]!autoprefixer?browsers=last 2 version!sass?outputStyle=expanded&sourceMap")
+                loader: ExtractTextPlugin.extract("style-loader", "css?modules&importLoaders=2&sourceMap&localIdentName=[local]___[hash:base64:5]!autoprefixer?browsers=last 2 version!sass?outputStyle=expanded&sourceMap", { publicPath: "/public/stylesheets" })
             },
             {
                 test: /\.woff(\?v=\d+\.\d+\.\d+)?$/,

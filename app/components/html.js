@@ -17,7 +17,7 @@ export default class Html extends Component {
                 </head>
                 <body>
                     <div id="root" dangerouslySetInnerHTML={{__html: content}}></div>
-                    <script dangerouslySetInnerHTML={{__html: `window.__data=${serialize(this.props.store.getState())};`}} charSet="UTF-8"/>
+                    <script dangerouslySetInnerHTML={{__html: `window.__data=${serialize(this.props.store.getState())};window.__baseUrl="${process.env.BASE_URL}"`}} charSet="UTF-8"/>
                     <script src="/javascripts/main.js"></script>
                 </body>
             </html>

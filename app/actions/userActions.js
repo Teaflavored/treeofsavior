@@ -21,7 +21,6 @@ export function createUser(body) {
         dispatch( createUserRequest() );
 
         let url = apiUrlHelper(USERS_ENDPOINT);
-
         return fetch(url, {
             method: "POST",
             headers: {

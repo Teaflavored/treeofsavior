@@ -8,7 +8,7 @@ class App extends Component {
         return (
             <div className="app">
                 <Navbar />
-                <div className="main-content">
+                <div className="main-content container">
                     { this.props.children }
                 </div>
             </div>
@@ -21,9 +21,13 @@ App.propTypes = {
     pushState: PropTypes.func.isRequired
 };
 
+App.contextTypes = {
+    store: PropTypes.object.isRequired
+};
+
 function mapStateToProps(state) {
     return {};
-};
+}
 
 App = connect(
     mapStateToProps,

@@ -1,4 +1,5 @@
 import Nav from "../Navbar/Navbar.js";
+import NavbarCss from "./Navbar.scss";
 import React, { Component, PropTypes } from "react";
 import { IndexLink, Link } from "react-router";
 
@@ -24,6 +25,7 @@ export default class Navbar extends Component {
                     <div className="collapse navbar-collapse" id="navigationItems">
                         <ul className="nav navbar-nav navbar-right">
                             <li><Link className="nav-btn" activeClassName="active" to="/login">Login</Link></li>
+                            <li><Link className="nav-btn" activeClassName="active" to="/signup">Sign up</Link></li>
                         </ul>
                     </div>
                 </div>
