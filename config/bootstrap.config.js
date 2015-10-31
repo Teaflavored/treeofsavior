@@ -39,7 +39,7 @@ module.exports = {
         pager: true,
         labels: true,
         badges: true,
-        jumbotron: true,
+        jumbotron: false,
         thumbnails: true,
         alerts: true,
         'progress-bars': true,

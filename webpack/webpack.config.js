@@ -1,22 +1,27 @@
 var path = require("path");
-var ExtractTextPlugin = require("extract-text-webpack-plugin");
+var WebpackIsomorphicTools = require('webpack-isomorphic-tools');
 var webpack = require('webpack');
+
+// https://github.com/halt-hammerzeit/webpack-isomorphic-tools
+var WebpackIsomorphicToolsPlugin = require('webpack-isomorphic-tools/plugin');
+var webpackIsomorphicToolsPlugin = new WebpackIsomorphicToolsPlugin(require('./webpack-isomorphic-tools'));
+
 
 module.exports = {
     context: path.resolve(__dirname, ".."),
-    devtool: 'eval',
-    entry:  [
+    devtool: 'inline-source-map',
+    entry: {
+        main: [
             "bootstrap-sass!./config/bootstrap.config.js",
             "./app/app.js"
-    ],
+        ]
+    },
     output: {
         path: path.join(__dirname, '..' ,'public', 'javascripts'),
-        filename: "main.js",
-        publicPath: "/public/javascripts"
+        filename: '[name]-[hash].js',
+        chunkFilename: '[name]-[chunkhash].js',
+        publicPath: "/javascripts/"
     },
-    plugins: [
-        new ExtractTextPlugin("styles.css", { allChunks: true })
-    ],
     module: {
         loaders: [
             {
@@ -31,7 +36,7 @@ module.exports = {
             },
             {
                 test: /\.scss$/,
-                loader: ExtractTextPlugin.extract("style-loader", "css?modules&importLoaders=2&sourceMap&localIdentName=[local]___[hash:base64:5]!autoprefixer?browsers=last 2 version!sass?outputStyle=expanded&sourceMap", { publicPath: "/public/stylesheets" })
+                loader: 'style!css?modules&importLoaders=2&sourceMap&localIdentName=[local]___[hash:base64:5]!autoprefixer?browsers=last 2 version!sass?outputStyle=expanded&sourceMap'
             },
             {
                 test: /\.woff(\?v=\d+\.\d+\.\d+)?$/,
@@ -52,10 +57,6 @@ module.exports = {
             {
                 test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
                 loader: "url?limit=10000&mimetype=image/svg+xml"
-            },
-            {
-                test: /\.html$/,
-                loader: "file?name=[name].[ext]",
             }
         ]
     },
@@ -64,6 +65,10 @@ module.exports = {
             "node_modules",
             "app"
         ],
-        extensions: ["", ".json", ".js", "jsx"]
-    }
+        extensions: ["", ".json", ".js"]
+    },
+    plugins: [
+        new webpack.IgnorePlugin(/webpack-stats\.json$/),
+        webpackIsomorphicToolsPlugin.development()
+    ]
 };

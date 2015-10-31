@@ -1,9 +1,16 @@
+require('babel-core/polyfill');
 var path = require("path");
 var webpack = require("webpack");
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
+var CleanPlugin = require("clean-webpack-plugin");
+
+// https://github.com/halt-hammerzeit/webpack-isomorphic-tools
+var WebpackIsomorphicToolsPlugin = require('webpack-isomorphic-tools/plugin');
+var webpackIsomorphicToolsPlugin = new WebpackIsomorphicToolsPlugin(require('./webpack-isomorphic-tools'));
 
 module.exports = {
     context: path.resolve(__dirname, ".."),
+    devtool: "source-map",
     entry: {
         main: [
             "bootstrap-sass!./config/bootstrap.config.js",
@@ -11,9 +18,10 @@ module.exports = {
         ]
     },
     output: {
-        path: "./public/javascripts/",
-        filename: "[name].js",
-        chunkFilename: "[name].js"
+        path: path.join(__dirname, '..' ,'public', "/javascripts"),
+        filename: '[name]-[chunkhash].js',
+        chunkFilename: '[name]-[chunkhash].js',
+        publicPath: '/javascripts/'
     },
     module: {
         loaders: [
@@ -24,7 +32,7 @@ module.exports = {
             },
             {
                 test: /\.scss$/,
-                loader: ExtractTextPlugin.extract("style", "css?modules&importLoaders=2&sourceMap&localIdentName=[local]___[hash:base64:5]!autoprefixer?browsers=last 2 version!sass?outputStyle=expanded&sourceMap")
+                loader: ExtractTextPlugin.extract('style', 'css?modules&importLoaders=2&sourceMap!autoprefixer?browsers=last 2 version!sass?outputStyle=expanded&sourceMap=true&sourceMapContents=true')
             },
             {
                 test: /\.woff(\?v=\d+\.\d+\.\d+)?$/,
@@ -48,6 +56,7 @@ module.exports = {
             }
         ]
     },
+    progress: true,
     resolve: {
         moduleDirectories: [
             "node_modules",
@@ -56,6 +65,8 @@ module.exports = {
         extensions: ["", ".json", ".js"]
     },
     plugins: [
+        new CleanPlugin(["../public/javascripts"]),
+        new ExtractTextPlugin('[name]-[chunkhash].css', {allChunks: true}),
         new webpack.DefinePlugin({
             'process.env': {
                 // Useful to reduce the size of client-side libraries, e.g. react
@@ -68,6 +79,7 @@ module.exports = {
             compress: {
                 warnings: false
             }
-        })
+        }),
+        webpackIsomorphicToolsPlugin
     ]
 };

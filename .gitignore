@@ -33,3 +33,4 @@ npm-debug.log
 .env
 /public/javascripts/
 /public/stylesheets/
+webpack-stats.json
