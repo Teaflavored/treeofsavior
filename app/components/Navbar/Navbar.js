@@ -1,11 +1,12 @@
 import Nav from "../Navbar/Navbar.js";
 import React, { Component, PropTypes } from "react";
 import { IndexLink, Link } from "react-router";
+import styles from "./Navbar.style.js"
 
 export default class Navbar extends Component {
     render() {
         return (
-            <div id="navbar" className="navbar navbar-fixed-top">
+            <div id="navbar" className="navbar navbar-fixed-top" style={ styles.navbar }>
                 <div className="container">
                     <div className="navbar-header">
                         <button type="button" className="navbar-toggle collapsed" data-toggle="collapse"
@@ -15,16 +16,16 @@ export default class Navbar extends Component {
                             <span className="icon-bar"></span>
                             <span className="icon-bar"></span>
                         </button>
-                        <h1>
-                            <IndexLink to="/" className="navbar-brand">
+                        <h1 style={ styles.brandHeader }>
+                            <IndexLink to="/" className="navbar-brand" style={ styles.brandHeaderLink }>
                                 Tree of Savior
                             </IndexLink>
                         </h1>
                     </div>
                     <div className="collapse navbar-collapse" id="navigationItems">
                         <ul className="nav navbar-nav navbar-right">
-                            <li><Link className="nav-btn" activeClassName="active" to="/login">Login</Link></li>
-                            <li><Link className="nav-btn" activeClassName="active" to="/signup">Sign up</Link></li>
+                            <li><Link className="nav-btn" activeClassName="active" to="/login" style={ styles.navBtn }>Login</Link></li>
+                            <li><Link className="nav-btn" activeClassName="active" to="/signup" style={ styles.navBtn }>Sign up</Link></li>
                         </ul>
                     </div>
                 </div>

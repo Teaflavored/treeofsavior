@@ -16,7 +16,6 @@ Visit the current build on [Heroku](https://treeofsavior.herokuapp.com/). This p
         BASE_URL=http://localhost:3000``
       
 - in a separate terminal, start up the mongo server by running ``mongod``, *Note: You may need permission to run this
-- in another separate terminal, start up the webpack dev server by running ``npm run dev-watch``
 - run ``npm run dev`` to build your bundle and start up your local server
 - navigate to ``localhost:3000`` to view the app
 - open a second browser window to point to ``localhost:3001`` for live editing of JSX components
