@@ -1,5 +1,4 @@
 import Nav from "../Navbar/Navbar.js";
-import NavbarCss from "./Navbar.scss";
 import React, { Component, PropTypes } from "react";
 import { IndexLink, Link } from "react-router";
 
