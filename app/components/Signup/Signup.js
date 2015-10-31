@@ -31,9 +31,9 @@ class Signup extends Component {
     render() {
         return (
             <div className="row">
-                <div className="col-md-4 col-md-offset4">
-                    <form action="javascript:void(0);">
-                        <h1>Sign up</h1>
+                <div className="col-md-4 col-md-offset-4">
+                    <form action="javascript:void(0);" className="card">
+                        <h1 className="text-center">Sign up</h1>
 
                         <div className="form-group">
                             <label htmlFor="email">E-mail</label>
@@ -45,7 +45,7 @@ class Signup extends Component {
                             <input className="form-control" id="password" type="password"
                                    onChange={ this.handlePasswordChange.bind(this) }/>
                         </div>
-                        <button className="btn btn-primary" onClick={ this.handleSignup.bind(this) }>Sign Up</button>
+                        <button className="btn btn-block btn-primary" onClick={ this.handleSignup.bind(this) }>Sign Up</button>
                     </form>
                 </div>
             </div>
