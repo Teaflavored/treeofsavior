@@ -26,6 +26,10 @@ App.contextTypes = {
     store: PropTypes.object.isRequired
 };
 
+App.fetchData = {
+
+};
+
 function mapStateToProps(state) {
     return {};
 }

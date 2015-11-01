@@ -7,7 +7,7 @@ export default function (app, passport, config) {
     });
 
     passport.deserializeUser(function(id, done) {
-        User.findById(id).exec.then(
+        User.findById(id).exec().then(
             function (user) {
                 done (null, user);
             },

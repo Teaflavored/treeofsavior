@@ -1,5 +1,5 @@
 //auth
-export const AUTH_ENDPOINT = "/api/login";
+export const AUTH_ENDPOINT = "/login";
 
 //users
 export const USERS_ID_ENDPOINT = "/users/:id";

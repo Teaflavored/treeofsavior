@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from "react";
 import { connect } from "react-redux";
+import { loginUser } from "../../actions/index.js"
 
 class Login extends Component {
 
@@ -11,20 +12,26 @@ class Login extends Component {
         };
     }
 
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.user) {
+            this.pushState("/");
+        }
+    }
+
     handleEmailChange(event) {
         this.setState({
             email: event.target.value
         });
     }
 
-    handlePasswordChange() {
+    handlePasswordChange(event) {
         this.setState({
             password: event.target.value
         });
     }
 
     handleLogin() {
-        this.context.store.dispatch(/* */);
+        this.context.store.dispatch(loginUser(this.state));
     }
 
     render() {
@@ -47,7 +54,7 @@ class Login extends Component {
                             <input className="form-control" id="password" type="password"
                                    onChange={ this.handlePasswordChange.bind(this) }/>
                         </div>
-                        <button className="btn btn-block btn-primary" onClick={ this.handleLogin.bind(this) }>Login In</button>
+                        <button className="btn btn-block btn-primary" onClick={ this.handleLogin.bind(this) }>Log In</button>
                     </form>
                 </div>
             </div>
@@ -56,12 +63,14 @@ class Login extends Component {
 }
 
 Login.contextTypes = {
-    store: PropTypes.object.isRequired
+    store: PropTypes.object.isRequired,
+    pushState: PropTypes.func
 };
 
 function mapStateToProps(state) {
     return {
-        error: state.auth.error
+        error: state.auth.error,
+        user: state.auth.sessionUser
     }
 }
 

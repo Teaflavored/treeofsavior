@@ -1,7 +1,8 @@
-import { LOGIN_USER_REQUEST, LOGIN_USER_SUCCESS } from "../actions/actionTypes.js";
+import { LOGIN_USER_REQUEST, LOGIN_USER_SUCCESS, LOGIN_USER_FAILURE } from "../actions/actionTypes.js";
 
 const initialState = {
     sessionUser : null,
+    error: "",
     isFetching: false
 };
 
@@ -18,6 +19,13 @@ export default (state = initialState, action = {} ) => {
                 {
                     isFetching: false,
                     sessionUser: action.sessionUser
+                }
+            );
+        case LOGIN_USER_FAILURE:
+            return Object.assign({}, state,
+                {
+                    isFetching: false,
+                    error: action.error
                 }
             );
         default:
