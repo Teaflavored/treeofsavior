@@ -8,15 +8,20 @@ export default (req, res) => {
         res.send({ error: "Already signed in" });
     }
 
+    const error = "Invalid email or password";
+
     passport.authenticate("local", (err, user, info) => {
         if (err) {
+            res.status(422);
             res.send( { error: err.message } );
         } else if (!user) {
-            res.send( { error : "Invalid credentials "} );
+            res.status(422);
+            res.send( { error  } );
         } else if (user) {
             req.logIn(user, (err) => {
                 if (err) {
-                    res.send( { error: "Invalid crednetials "} );
+                    res.status(422);
+                    res.send( { error } );
                 } else {
                     res.send(_.omit(user.toObject(), "password"));
                 }
