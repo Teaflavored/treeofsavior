@@ -18,7 +18,8 @@ export default (state = initialState, action = {} ) => {
         case LOGIN_USER_REQUEST:
             return Object.assign({}, state,
                 {
-                    isFetching: true
+                    isFetching: true,
+                    error: ""
                 }
             );
         case LOGIN_USER_SUCCESS:
@@ -38,7 +39,8 @@ export default (state = initialState, action = {} ) => {
         case LOGOUT_USER_REQUEST:
             return Object.assign({}, state,
                 {
-                    isFetching: true
+                    isFetching: true,
+                    error: ""
                 });
         case LOGOUT_USER_SUCCESS:
             return Object.assign({}, state,

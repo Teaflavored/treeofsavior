@@ -10,7 +10,12 @@ export default (req, res) => {
 
     user.save().then(
         (user) => {
-            res.send(_.omit(user.toObject(), "password"));
+            req.logIn(user, (err) => {
+                if (err) {
+                    res.redirect("/");
+                }
+                res.send(_.omit(user.toObject(), "password"));
+            });
         },
         (err) => {
             let error = err.message;

@@ -18,7 +18,7 @@ function loginUserRequest() {
     };
 }
 
-function loginUserSuccess(user) {
+export function loginUserSuccess(user) {
     return {
         type: LOGIN_USER_SUCCESS,
         sessionUser: user

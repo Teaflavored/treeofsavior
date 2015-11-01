@@ -12,9 +12,9 @@ class Login extends Component {
         };
     }
 
-    componentWillReceiveProps(nextProps) {
-        if (nextProps.user) {
-            this.props.pushState(null, "/");
+    componentWillMount() {
+        if (this.props.isLoggedIn) {
+            this.props.replaceState(null, "/");
         }
     }
 
@@ -62,15 +62,18 @@ class Login extends Component {
     }
 }
 
+Login.propTypes = {
+    replaceState: PropTypes.func.isRequired,
+    isLoggedIn: PropTypes.bool
+};
+
 Login.contextTypes = {
-    store: PropTypes.object.isRequired,
-    pushState: PropTypes.func
+    store: PropTypes.object.isRequired
 };
 
 function mapStateToProps(state) {
     return {
-        error: state.auth.error,
-        user: state.auth.sessionUser
+        error: state.auth.error
     }
 }
 

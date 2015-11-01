@@ -13,6 +13,12 @@ class Signup extends Component {
         };
     }
 
+    componentWillMount() {
+        if (this.props.isLoggedIn) {
+            this.props.replaceState(null, "/");
+        }
+    }
+
     handleEmailChange(event) {
         this.setState(
             {email: event.target.value}
@@ -56,6 +62,11 @@ class Signup extends Component {
         )
     }
 }
+
+Signup.propTypes = {
+    isLoggedIn: PropTypes.bool,
+    replaceState: PropTypes.func.isRequired
+};
 
 Signup.contextTypes = {
     store: PropTypes.object.isRequired

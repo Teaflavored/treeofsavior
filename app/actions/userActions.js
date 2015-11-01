@@ -1,5 +1,6 @@
 import { CREATE_USER_REQUEST, CREATE_USER_SUCCESS, CREATE_USER_FAILURE }from "./actionTypes.js";
 import { USERS_ENDPOINT } from "../../api/endpoints.js";
+import { loginUserSuccess } from "./authActions.js";
 import apiUrlHelper from "./helpers/apiUrlHelper.js";
 import actionParser from "./helpers/actionParser.js";
 import fetch from "isomorphic-fetch";
@@ -9,8 +10,6 @@ function createUserRequest() {
         type: CREATE_USER_REQUEST
     };
 }
-
-
 
 function createUserSuccess(user) {
     return {
@@ -41,7 +40,10 @@ export function createUser(body) {
         })
         .then( actionParser )
         .then(
-                json => dispatch( createUserSuccess(json) ),
+                json => {
+                    dispatch( createUserSuccess(json) );
+                    dispatch( loginUserSuccess(json) );
+                },
                 errorPromise => {
                     errorPromise.then(
                             errorJson => dispatch( createUserFailure(errorJson.error) )
