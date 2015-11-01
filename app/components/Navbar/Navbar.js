@@ -24,6 +24,7 @@ export default class Navbar extends Component {
                     </div>
                     <div className="collapse navbar-collapse" id="navigationItems">
                         <ul className="nav navbar-nav navbar-right">
+                            <li><Link className="nav-btn" activeClassName="active" to="/builds" style= { styles.navBtn }>Builds</Link></li>
                             <li><Link className="nav-btn" activeClassName="active" to="/login" style={ styles.navBtn }>Login</Link></li>
                             <li><Link className="nav-btn" activeClassName="active" to="/signup" style={ styles.navBtn }>Sign up</Link></li>
                         </ul>

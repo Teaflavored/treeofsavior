@@ -4,7 +4,8 @@ import { App,
          Home,
          Login,
          Signup,
-         NotFound
+         NotFound,
+         Builds
             } from  "./components";
 
 export default (store) => {
@@ -14,7 +15,8 @@ export default (store) => {
             <IndexRoute component={Home}/>
             <Route path="/login" component={Login}/>
             <Route path="/signup" component={Signup}/>
+            <Route path="/builds" component={Builds}/>
+            <Route path="/*" component={NotFound} status={404} />
         </Route>
     );
-    //<Route path="/*" component={NotFound} status={404} />
 };
