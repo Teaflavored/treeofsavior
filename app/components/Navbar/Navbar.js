@@ -14,7 +14,7 @@ class Navbar extends Component {
                 <li><Link className="nav-btn" activeClassName="active" to="/login" style={ styles.navBtn }>Login</Link></li>
             )
         } else {
-            return "";
+            return <li></li>;
         }
     }
 
@@ -24,7 +24,7 @@ class Navbar extends Component {
                 <li><Link className="nav-btn" activeClassName="active" to="/signup" style={ styles.navBtn }>Sign up</Link></li>
             );
         } else {
-            return "";
+            return <li></li>;
         }
     }
 
@@ -34,7 +34,7 @@ class Navbar extends Component {
                 <li><a className="nav-btn" href="javascript:void(0);" onClick={ this.handleLogout.bind(this) } style={ styles.navBtn } >Log Out</a></li>
             );
         } else {
-            return "";
+            return <li></li>;
         }
     }
 
