@@ -23,6 +23,7 @@ import { ReduxRouter } from "redux-router";
 import { reduxReactRouter, match } from "redux-router/server";
 import { configureStore } from "./app/store.js";
 import { Provider } from 'react-redux';
+import _ from "lodash";
 
 db();
 const app = express();
@@ -69,13 +70,14 @@ resolveAssets.then(
                         </Provider>
                     );
 
-                    //todo fix all this into components, currently a hack
+                    //todo fix all this as statics on components, currently a hack start here
                     if (req.isAuthenticated()) {
                         store.dispatch({
                             type: "login_user_success",
-                            sessionUser: req.user
+                            sessionUser: _.omit(req.user, "password")
                         });
                     }
+                    //todo fix all this as statics on components, currently a hack ends here
 
                     const html = ReactDOM.renderToString(<Html assets={webpackIsomorphicTools.assets()} store={store} component={component} />);
                     res.send("<!DOCTYPE html>\n" + html);
