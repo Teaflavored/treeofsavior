@@ -13,10 +13,9 @@ export default (req, res) => {
             res.send(_.omit(user.toObject(), "password"));
         },
         (err) => {
-            res.send({
-                message: err.message,
-                statusCode: 422
-            });
+            let error = err.message;
+            res.status(422);
+            res.send({ error });
         }
     )
 };

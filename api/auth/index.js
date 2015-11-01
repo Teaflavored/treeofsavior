@@ -1,5 +1,7 @@
 import loginUser from "./loginUser.js";
+import logoutUser from "./logoutUser.js";
 
 export default (router) => {
-    router.get("/login", loginUser);
+    router.post("/login", loginUser);
+    router.delete("/login", logoutUser);
 };

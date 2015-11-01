@@ -34,12 +34,15 @@ class Signup extends Component {
                 <div className="col-md-4 col-md-offset-4">
                     <form action="javascript:void(0);" className="card">
                         <h1 className="text-center">Sign up</h1>
-
+                        {
+                            this.props.error ?
+                                (<div className="alert alert-danger"> { this.props.error } </div>) : ""
+                        }
                         <div className="form-group">
                             <label htmlFor="email">E-mail</label>
                             <input className="form-control" id="email" type="text"
                                    onChange={ this.handleEmailChange.bind(this) }/>
-                        </div>
+                    </div>
                         <div className="form-group">
                             <label htmlFor="password">Password</label>
                             <input className="form-control" id="password" type="password"
@@ -58,8 +61,9 @@ Signup.contextTypes = {
 };
 
 function mapStateToProps(state) {
-    console.log(state);
-    return {};
+    return {
+        error: state.users.error
+    };
 }
 
 export default connect(mapStateToProps)(Signup);

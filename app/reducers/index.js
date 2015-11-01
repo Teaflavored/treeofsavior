@@ -7,8 +7,8 @@ import { combineReducers } from "redux";
 const rootReducer = combineReducers(
     {
         router: routerStateReducer,
-        usersReducer,
-        authReducer
+        users: usersReducer,
+        auth: authReducer
     }
 );
 

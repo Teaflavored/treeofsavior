@@ -1,3 +1,6 @@
 export default (req, res) => {
-    console.log(req);
+    if (req.isAuthenticated) {
+        
+
+    }
 };
