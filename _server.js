@@ -25,6 +25,9 @@ import { configureStore } from "./app/store.js";
 import { Provider } from 'react-redux';
 import _ from "lodash";
 
+//server signing in user
+import { loginUserSuccess } from "./app/actions/authActions.js";
+
 db();
 const app = express();
 const port = process.env.PORT || '3000';
@@ -70,14 +73,10 @@ resolveAssets.then(
                         </Provider>
                     );
 
-                    //todo fix all this as statics on components, currently a hack start here
+                    //server signing in user
                     if (req.isAuthenticated()) {
-                        store.dispatch({
-                            type: "login_user_success",
-                            sessionUser: _.omit(req.user, "password")
-                        });
+                        store.dispatch(loginUserSuccess(_.omit(req.user.toObject(), "password")));
                     }
-                    //todo fix all this as statics on components, currently a hack ends here
 
                     const html = ReactDOM.renderToString(<Html assets={webpackIsomorphicTools.assets()} store={store} component={component} />);
                     res.send("<!DOCTYPE html>\n" + html);

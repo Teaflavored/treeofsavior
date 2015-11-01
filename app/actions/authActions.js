@@ -68,12 +68,12 @@ export function logoutUser() {
             credentials: "same-origin"
         })
         .then(actionParser)
-        .then(json => dispatch(logoutUserSuccess()),
-                errorPromise => {
-                    errorPromise.then(
-                        errorJson => dispatch( logoutUserFailure(errorJson.error) )
-                    )
-                });
+        .then(
+            json => dispatch(logoutUserSuccess()),
+            errorPromise => {
+                errorPromise.then( errorJson => dispatch( logoutUserFailure(errorJson.error) ) )
+            }
+        )
     }
 }
 
@@ -91,12 +91,11 @@ export function loginUser(body) {
             credentials: "same-origin"
         })
         .then(actionParser)
-        .then( json => dispatch(loginUserSuccess(json)),
-                errorPromise => {
-                errorPromise.then(
-                        errorJson => dispatch( loginUserFailure(errorJson.error) )
-                )
-            });
-
+        .then(
+            json => dispatch(loginUserSuccess(json)),
+            errorPromise => {
+                errorPromise.then( errorJson => dispatch( loginUserFailure(errorJson.error) ) )
+            }
+        )
     }
 }

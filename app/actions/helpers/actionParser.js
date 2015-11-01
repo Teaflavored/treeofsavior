@@ -1,8 +1,6 @@
 export default ( response ) => {
     if (response.status > 400) {
-        return Promise.reject(
-            Promise.resolve(response.json())
-        );
+        return Promise.reject(response.json());
     } else {
         return response.json();
     }
