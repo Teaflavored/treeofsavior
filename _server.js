@@ -64,11 +64,19 @@ resolveAssets.then(
             store.dispatch(
                 match(req.originalUrl, (error, redirectLocation, routerState) => {
                     const component = (
-
                         <Provider store={store} key="provider">
                             <ReduxRouter/>
                         </Provider>
                     );
+
+                    //todo fix all this into components, currently a hack
+                    if (req.isAuthenticated()) {
+                        store.dispatch({
+                            type: "login_user_success",
+                            sessionUser: req.user
+                        });
+                    }
+                    console.log(store.getState());
 
                     const html = ReactDOM.renderToString(<Html assets={webpackIsomorphicTools.assets()} store={store} component={component} />);
                     res.send("<!DOCTYPE html>\n" + html);

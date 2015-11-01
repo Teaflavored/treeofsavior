@@ -10,7 +10,7 @@ function loginUserRequest() {
     };
 }
 
-function loginUserSuccess(user) {
+export function loginUserSuccess(user) {
     return {
         type: LOGIN_USER_SUCCESS,
         sessionUser: user
@@ -25,7 +25,7 @@ function loginUserFailure(error) {
 }
 
 export function isLoggedIn(state) {
-    return state.auth && state.auth.sessionUser;
+    return !!(state.auth && state.auth.sessionUser);
 }
 
 export function loginUser(body) {

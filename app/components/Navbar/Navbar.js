@@ -3,7 +3,41 @@ import React, { Component, PropTypes } from "react";
 import { IndexLink, Link } from "react-router";
 import styles from "./Navbar.style.js"
 
-export default class Navbar extends Component {
+class Navbar extends Component {
+    handleLogout() {
+
+    }
+
+    getLoginNav() {
+        if (!this.props.isLoggedIn) {
+            return (
+                <li><Link className="nav-btn" activeClassName="active" to="/login" style={ styles.navBtn }>Login</Link></li>
+            )
+        } else {
+            return "";
+        }
+    }
+
+    getSignupNav() {
+        if (!this.props.isLoggedIn) {
+            return (
+                <li><Link className="nav-btn" activeClassName="active" to="/signup" style={ styles.navBtn }>Sign up</Link></li>
+            );
+        } else {
+            return "";
+        }
+    }
+
+    getLogoutNav() {
+        if (this.props.isLoggedIn) {
+            return (
+                <li><a className="nav-btn" onClick={ this.handleLogout.bind(this) } style={ styles.navBtn } >Log Out</a></li>
+            );
+        } else {
+            return "";
+        }
+    }
+
     render() {
         return (
             <div id="navbar" className="navbar navbar-fixed-top" style={ styles.navbar }>
@@ -25,12 +59,20 @@ export default class Navbar extends Component {
                     <div className="collapse navbar-collapse" id="navigationItems">
                         <ul className="nav navbar-nav navbar-right">
                             <li><Link className="nav-btn" activeClassName="active" to="/builds" style= { styles.navBtn }>Builds</Link></li>
-                            <li><Link className="nav-btn" activeClassName="active" to="/login" style={ styles.navBtn }>Login</Link></li>
-                            <li><Link className="nav-btn" activeClassName="active" to="/signup" style={ styles.navBtn }>Sign up</Link></li>
+                            { this.getLoginNav() }
+                            { this.getSignupNav() }
+                            { this.getLogoutNav() }
                         </ul>
                     </div>
                 </div>
             </div>
         );
     }
+}
+
+Navbar.propTypes = {
+    isLoggedIn: PropTypes.bool
 };
+
+export default Navbar;
+
