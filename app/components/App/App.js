@@ -1,18 +1,20 @@
 import React, { Component, PropTypes } from "react";
 import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 import Navbar from "../Navbar/Navbar.js";
 import { pushState } from "redux-router";
-import { isLoggedIn } from "../../actions/authActions.js";
+import { isLoggedIn, logoutUser } from "../../actions/authActions.js";
 
 import styles from "./App.style.js";
 
 class App extends Component {
     render() {
         const { children, pushState, isLoggedIn } = this.props;
+        let logout = bindActionCreators(logoutUser, this.context.store.dispatch);
 
         return (
             <div className="app">
-                <Navbar { ...this.props } />
+                <Navbar { ...Object.assign({}, this.props, { logout }) } />
                 <div className="main-content container" style={ styles.mainContainer }>
                     {children && React.cloneElement(children, {
                         pushState,

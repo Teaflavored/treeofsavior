@@ -76,7 +76,6 @@ resolveAssets.then(
                             sessionUser: req.user
                         });
                     }
-                    console.log(store.getState());
 
                     const html = ReactDOM.renderToString(<Html assets={webpackIsomorphicTools.assets()} store={store} component={component} />);
                     res.send("<!DOCTYPE html>\n" + html);

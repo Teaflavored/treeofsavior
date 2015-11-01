@@ -1,11 +1,11 @@
 import Nav from "../Navbar/Navbar.js";
 import React, { Component, PropTypes } from "react";
 import { IndexLink, Link } from "react-router";
-import styles from "./Navbar.style.js"
+import styles from "./Navbar.style.js";
 
 class Navbar extends Component {
     handleLogout() {
-
+        this.props.logout();
     }
 
     getLoginNav() {
@@ -31,7 +31,7 @@ class Navbar extends Component {
     getLogoutNav() {
         if (this.props.isLoggedIn) {
             return (
-                <li><a className="nav-btn" onClick={ this.handleLogout.bind(this) } style={ styles.navBtn } >Log Out</a></li>
+                <li><a className="nav-btn" href="javascript:void(0);" onClick={ this.handleLogout.bind(this) } style={ styles.navBtn } >Log Out</a></li>
             );
         } else {
             return "";
@@ -71,7 +71,8 @@ class Navbar extends Component {
 }
 
 Navbar.propTypes = {
-    isLoggedIn: PropTypes.bool
+    isLoggedIn: PropTypes.bool.isRequired,
+    logout: PropTypes.func.isRequired
 };
 
 export default Navbar;

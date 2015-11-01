@@ -14,7 +14,7 @@ class Login extends Component {
 
     componentWillReceiveProps(nextProps) {
         if (nextProps.user) {
-            this.pushState("/");
+            this.props.pushState(null, "/");
         }
     }
 
