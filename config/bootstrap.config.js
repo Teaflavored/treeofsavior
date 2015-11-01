@@ -1,5 +1,6 @@
 //twitter bootstrap config, disable components that won't be used
 module.exports = {
+    preBootstrapCustomizations: './app/styles/variables.scss',
     mainSass: "./app/styles/main.scss",
     debug: false,
     scripts: {
