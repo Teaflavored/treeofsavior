@@ -14,9 +14,10 @@ Visit the current build on [Heroku](https://treeofsavior.herokuapp.com/). This p
     DB_URL = mongodb://localhost/treeofsavior
     DB_RETRIES = 5
     SESSION_SECRET = WeloveTreeofSavior
-    BASE_URL=http://localhost:3000
-    NODE_ENV=development
-      
+    BASE_URL = http://localhost:3000
+    NODE_ENV = development
+    
+
 - in a separate terminal, start up the mongo server by running ``mongod``, *Note: You may need permission to run this
 - run ``npm run dev`` to build your bundle and start up your local server
 - navigate to ``localhost:3000`` to view the app
