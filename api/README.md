@@ -29,6 +29,10 @@ Each data call file will export a function that will be passed the request and r
             res.send( { error: "Some error has occur" } )
          
     }
+    
+##Endpoints url
+
+Endpoints url must be defined in ``./endpoints.js`` as constants, do not include base /api url here. Use these constants to generate full urls as fetch only takes absolute urls.
 
 ##Request cookies
 

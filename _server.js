@@ -14,7 +14,7 @@ import db from "./server/_db";
 import sessionConfig from "./config/session.js";
 import passportConfig from "./config/passport.js";
 import Html from "./app/components/html.js";
-import registerApiEndpoints from "./api";
+import registerApiEndpoints from "./api/index.js";
 import getRoutes from "./app/routes.js";
 import createHistory from 'history/lib/createMemoryHistory';
 import WebpackIsomorphicTools from "webpack-isomorphic-tools";
