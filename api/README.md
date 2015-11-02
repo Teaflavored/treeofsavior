@@ -32,4 +32,4 @@ Each data call file will export a function that will be passed the request and r
 
 ##Request cookies
 
-Since this is an universal app, calls to our api can occur both on the node server as well as the client. Since we are using (fetch)[https://github.com/matthew-andrews/isomorphic-fetch], we have to be mindful of the request headers that will be set. To maintain all request cookies, on the client, fetch options must include `` credentials: true ``; On the server, fetch options must pass the cookies as a header `` Cookie : foo=bar;bar=foo ``.
+Since this is an universal app, calls to our api can occur both on the node server as well as the client. Since we are using [fetch](https://github.com/matthew-andrews/isomorphic-fetch), we have to be mindful of the request headers that will be set. To maintain all request cookies, on the client, fetch options must include `` credentials: true ``; On the server, fetch options must pass the cookies as a header `` Cookie : foo=bar;bar=foo ``.
